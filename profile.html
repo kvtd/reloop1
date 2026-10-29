@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรไฟล์ของฉัน - Reloop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;800&family=Poppins:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .profile-container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 40px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .profile-image-wrapper {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .edit-profile-btn {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background: #333;
+            color: #fff;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .edit-profile-btn:hover {
+            background: #555;
+            transform: scale(1.1);
+        }
+
+        .profile-name {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .profile-email {
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .logout-btn {
+            background: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">reloop<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">หน้าแรก</a></li>
+                <li><a href="index.html#shop">สินค้า</a></li>
+                <li><a href="sell.html">ลงขาย</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="chat.html" class="btn-icon"><i class="fas fa-comment-dots"></i></a>
+                <a href="cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <a href="profile.html" class="btn-icon active"><i class="fas fa-user"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-container">
+        <div class="profile-container">
+            <div class="profile-image-wrapper">
+                <img src="images/default-profile.png" alt="Profile" class="profile-image" id="profileImageDisplay">
+                <label for="profileUpload" class="edit-profile-btn">
+                    <i class="fas fa-camera"></i>
+                </label>
+                <input type="file" id="profileUpload" accept="image/*" style="display: none;">
+            </div>
+            <h2 class="profile-name" id="profileName">Loading...</h2>
+            <p class="profile-email" id="profileEmail">loading...</p>
+
+            <div class="bio-section" style="margin-bottom: 20px;">
+                <textarea id="profileBio" placeholder="เพิ่มคำอธิบายเกี่ยวกับตัวคุณ..."
+                    style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 15px; resize: none; margin-bottom: 15px; font-family: 'Sarabun', sans-serif; font-size: 1rem; background: #f9f9f9;"></textarea>
+            </div>
+
+            <button id="saveBioBtn" class="save-btn"
+                style="background: #333; color: #fff; border: none; padding: 12px 30px; border-radius: 50px; font-size: 1rem; cursor: pointer; width: 100%; margin-bottom: 15px; transition: all 0.3s ease;">บันทึกข้อมูล</button>
+
+            <a href="admin.html" id="adminDashboardBtn" class="admin-btn"
+                style="display: none; width: 100%; padding: 12px 30px; background: #fff; color: #333; border: 1px solid #333; border-radius: 50px; text-align: center; text-decoration: none; margin-bottom: 15px; font-size: 1rem; transition: all 0.3s ease;">
+                <i class="fas fa-tools"></i> จัดการสต็อกสินค้า
+            </a>
+
+            <button class="logout-btn" id="logoutBtn">ออกจากระบบ</button>
+
+            <div class="order-history" style="margin-top: 50px; text-align: left;">
+                <h3 style="border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 20px;">สถานะการจัดส่ง
+                </h3>
+
+                <div class="order-tabs"
+                    style="display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid #eee;">
+                    <button class="tab-btn active" onclick="filterOrders('preparing')"
+                        style="padding: 10px 20px; background: none; border: none; border-bottom: 2px solid #6c5ce7; color: #6c5ce7; font-weight: 600; cursor: pointer;">เตรียมสินค้า</button>
+                    <button class="tab-btn" onclick="filterOrders('picked_up')"
+                        style="padding: 10px 20px; background: none; border: none; color: #999; cursor: pointer;">เข้ารับพัสดุ</button>
+                    <button class="tab-btn" onclick="filterOrders('shipping')"
+                        style="padding: 10px 20px; background: none; border: none; color: #999; cursor: pointer;">อยู่ระหว่างการจัดส่ง</button>
+                </div>
+                <div id="orderList">
+                    <p style="text-align: center; color: #999;">กำลังโหลดข้อมูล...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

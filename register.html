@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สมัครสมาชิก - Reloop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;800&family=Poppins:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">reloop<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">หน้าแรก</a></li>
+                <li><a href="index.html#shop">สินค้า</a></li>
+                <li><a href="sell.html">ลงขาย</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="chat.html" class="btn-icon"><i class="fas fa-comment-dots"></i></a>
+                <a href="login.html" class="btn-icon"><i class="fas fa-user"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-container">
+        <div class="form-card">
+            <h2>สมัครสมาชิก</h2>
+            <p>เข้าร่วมชุมชน Reloop เพื่อซื้อขายเสื้อผ้าแฟชั่น</p>
+
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="username">ชื่อผู้ใช้</label>
+                    <input type="text" id="username" required placeholder="ตั้งชื่อผู้ใช้ของคุณ">
+                </div>
+                <div class="form-group">
+                    <label for="email">อีเมล</label>
+                    <input type="email" id="email" required placeholder="example@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="password">รหัสผ่าน</label>
+                    <input type="password" id="password" required placeholder="รหัสผ่านอย่างน้อย 8 ตัวอักษร">
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">ยืนยันรหัสผ่าน</label>
+                    <input type="password" id="confirm-password" required placeholder="กรอกรหัสผ่านอีกครั้ง">
+                </div>
+
+                <button type="submit" class="btn btn-primary full-width">สมัครสมาชิก</button>
+            </form>
+
+            <div class="form-footer">
+                <p>มีบัญชีอยู่แล้ว? <a href="login.html">เข้าสู่ระบบ</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

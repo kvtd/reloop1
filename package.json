@@ -1,0 +1,20 @@
+{
+    "name": "reloop",
+    "version": "1.0.0",
+    "description": "",
+    "main": "script.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "commonjs",
+    "dependencies": {
+        "express": "^5.1.0",
+        "fs": "^0.0.1-security",
+        "mysql2": "^3.15.3",
+        "node-fetch": "^3.3.2",
+        "path": "^0.12.7"
+    }
+}

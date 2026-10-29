@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ลงขายสินค้า - Reloop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;800&family=Poppins:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">reloop<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">หน้าแรก</a></li>
+                <li><a href="index.html#shop">สินค้า</a></li>
+                <li><a href="sell.html" class="active">ลงขาย</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="chat.html" class="btn-icon"><i class="fas fa-comment-dots"></i></a>
+                <a href="register.html" class="btn-icon"><i class="fas fa-user"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-container">
+        <div class="form-card wide">
+            <h2>ลงขายสินค้า</h2>
+            <p>ส่งต่อเสื้อผ้าของคุณให้คนอื่นดูแลต่อ</p>
+
+            <form id="sellForm">
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="image-upload-box" id="imageUploadBox">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>คลิกเพื่ออัปโหลดรูปภาพ</p>
+                            <input type="file" id="productImage" accept="image/*" hidden>
+                            <div id="imagePreview" class="image-preview"></div>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="productName">ชื่อสินค้า</label>
+                            <input type="text" id="productName" required placeholder="เช่น เสื้อยืดสีขาว Uniqlo">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category">หมวดหมู่</label>
+                            <select id="category" required>
+                                <option value="" disabled selected>เลือกหมวดหมู่</option>
+                                <option value="เสื้อ">เสื้อ</option>
+                                <option value="กางเกง">กางเกง</option>
+                                <option value="รองเท้า">รองเท้า</option>
+                                <option value="กระโปรง">กระโปรง</option>
+                                <option value="กระเป๋า">กระเป๋า</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="price">ราคา (บาท)</label>
+                            <input type="number" id="price" required placeholder="เช่น 250">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">รายละเอียดสินค้า</label>
+                            <textarea id="description" rows="4"
+                                placeholder="บอกรายละเอียดเกี่ยวกับสินค้า เช่น ไซส์ สภาพ ตำหนิ"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary full-width">ลงขายทันที</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

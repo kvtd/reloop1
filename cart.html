@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ตะกร้าสินค้า - Reloop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;800&family=Poppins:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">reloop<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">หน้าแรก</a></li>
+                <li><a href="index.html#shop">สินค้า</a></li>
+                <li><a href="sell.html">ลงขาย</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="chat.html" class="btn-icon"><i class="fas fa-comment-dots"></i></a>
+                <a href="login.html" class="btn-icon"><i class="fas fa-user"></i></a>
+                <a href="cart.html" class="cart-icon active">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-container cart-page">
+        <div class="container">
+            <h2 class="page-title">ตะกร้าสินค้าของคุณ</h2>
+
+            <div class="cart-layout">
+                <!-- Cart Items -->
+                <div class="cart-items">
+                    <!-- Cart items will be dynamically inserted here -->
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h3>สรุปคำสั่งซื้อ</h3>
+                    <div class="summary-row">
+                        <span>ยอดรวมสินค้า</span>
+                        <span>฿0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>ค่าจัดส่ง</span>
+                        <span>฿0</span>
+                    </div>
+                    <div class="summary-divider"></div>
+                    <div class="summary-row total">
+                        <span>ยอดรวมทั้งสิ้น</span>
+                        <span>฿0</span>
+                    </div>
+
+                    <button class="btn btn-primary full-width checkout-btn">ชำระเงิน</button>
+
+                    <div class="payment-methods">
+                        <p>ช่องทางการชำระเงิน</p>
+                        <div class="payment-icons">
+                            <i class="fab fa-cc-visa"></i>
+                            <i class="fab fa-cc-mastercard"></i>
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

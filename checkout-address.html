@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ที่อยู่จัดส่ง - Reloop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;800&family=Poppins:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .checkout-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .checkout-form {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Sarabun', sans-serif;
+            font-size: 1rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .order-summary {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .summary-row.total {
+            font-weight: 800;
+            color: #333;
+            font-size: 1.2rem;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px dashed #eee;
+        }
+
+        .confirm-btn {
+            width: 100%;
+            padding: 15px;
+            background: #333;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .confirm-btn:hover {
+            background: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">reloop<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">หน้าแรก</a></li>
+                <li><a href="index.html#shop">สินค้า</a></li>
+                <li><a href="sell.html">ลงขาย</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-container" style="display: block; padding-top: 100px;">
+        <div class="checkout-container">
+            <div class="section-header">
+                <h2>ที่อยู่จัดส่ง</h2>
+                <p style="color: #636e72;">กรุณากรอกข้อมูลสำหรับการจัดส่งสินค้า</p>
+            </div>
+
+            <form id="addressForm" class="checkout-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>ชื่อ-นามสกุล</label>
+                        <input type="text" id="fullName" required placeholder="ชื่อ-นามสกุล ผู้รับ">
+                    </div>
+                    <div class="form-group">
+                        <label>เบอร์โทรศัพท์</label>
+                        <input type="tel" id="phone" required placeholder="08x-xxx-xxxx">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>ที่อยู่</label>
+                    <textarea id="address" rows="3" required placeholder="บ้านเลขที่, หมู่, ซอย, ถนน"></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>แขวง/ตำบล</label>
+                        <input type="text" id="subdistrict" required>
+                    </div>
+                    <div class="form-group">
+                        <label>เขต/อำเภอ</label>
+                        <input type="text" id="district" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>จังหวัด</label>
+                        <input type="text" id="province" required>
+                    </div>
+                    <div class="form-group">
+                        <label>รหัสไปรษณีย์</label>
+                        <input type="text" id="zipcode" required>
+                    </div>
+                </div>
+
+                <div class="order-summary">
+                    <h3>สรุปคำสั่งซื้อ</h3>
+                    <div id="orderItemsSummary" style="margin-bottom: 20px; font-size: 0.9rem; color: #666;">
+                        <!-- Items will be inserted here -->
+                    </div>
+                    <div class="summary-row">
+                        <span>ยอดรวมสินค้า</span>
+                        <span id="summarySubtotal">฿0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>ค่าจัดส่ง</span>
+                        <span id="summaryShipping">฿50</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>ยอดสุทธิ</span>
+                        <span id="summaryTotal">฿0</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="confirm-btn">ยืนยันคำสั่งซื้อ</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load cart data for summary
+            const cart = JSON.parse(localStorage.getItem('reloop_cart')) || [];
+            if (cart.length === 0) {
+                alert('ตะกร้าสินค้าว่างเปล่า');
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Calculate totals
+            const subtotal = cart.reduce((sum, item) => sum + (Number(item.price) * item.quantity), 0);
+            const shipping = 50;
+            const total = subtotal + shipping;
+
+            // Update UI
+            document.getElementById('summarySubtotal').textContent = `฿${subtotal.toLocaleString()}`;
+            document.getElementById('summaryTotal').textContent = `฿${total.toLocaleString()}`;
+
+            // Show items summary
+            const itemsHtml = cart.map(item => `
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span>${item.name} x${item.quantity}</span>
+                    <span>฿${(item.price * item.quantity).toLocaleString()}</span>
+                </div>
+            `).join('');
+            document.getElementById('orderItemsSummary').innerHTML = itemsHtml;
+
+            // Handle form submission
+            document.getElementById('addressForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const btn = e.target.querySelector('button');
+                const originalText = btn.innerText;
+                btn.innerText = 'กำลังดำเนินการ...';
+                btn.disabled = true;
+
+                // Collect address data
+                const addressData = {
+                    fullName: document.getElementById('fullName').value,
+                    phone: document.getElementById('phone').value,
+                    address: document.getElementById('address').value,
+                    subdistrict: document.getElementById('subdistrict').value,
+                    district: document.getElementById('district').value,
+                    province: document.getElementById('province').value,
+                    zipcode: document.getElementById('zipcode').value
+                };
+
+                // Combine full address
+                const fullAddress = `${addressData.fullName} (${addressData.phone})\n${addressData.address}\n${addressData.subdistrict}, ${addressData.district}\n${addressData.province} ${addressData.zipcode}`;
+
+                // Proceed with checkout logic (calling the existing API)
+                const user = JSON.parse(localStorage.getItem('reloop_user'));
+
+                const orderData = {
+                    user_id: user ? user.id : null,
+                    username: user ? user.username : 'Guest',
+                    email: user ? user.email : 'guest@example.com',
+                    total_amount: total,
+                    cart: cart,
+                    shipping_address: fullAddress // Send address to backend
+                };
+
+                // Determine API URL
+                const isFileProtocol = window.location.protocol === 'file:';
+                const apiUrl = isFileProtocol ? 'http://localhost:3001/api/orders' : '/api/orders';
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(orderData)
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        localStorage.removeItem('reloop_cart');
+                        alert('สั่งซื้อสำเร็จ! ขอบคุณที่ใช้บริการ');
+                        window.location.href = 'profile.html';
+                    } else {
+                        alert(result.message || 'เกิดข้อผิดพลาดในการสั่งซื้อ');
+                        btn.innerText = originalText;
+                        btn.disabled = false;
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('เกิดข้อผิดพลาดในการเชื่อมต่อ');
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

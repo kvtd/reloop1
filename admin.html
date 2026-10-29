@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Reloop</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;800&family=Poppins:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 100px auto 50px;
+            padding: 20px;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .admin-header h1 {
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .add-product-btn {
+            background: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .add-product-btn:hover {
+            background: #555;
+        }
+
+        .product-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .product-table th,
+        .product-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .product-table th {
+            background: #f9f9f9;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .product-img-thumb {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-available {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .status-sold {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .action-btn {
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-right: 5px;
+            transition: opacity 0.3s;
+        }
+
+        .action-btn:hover {
+            opacity: 0.8;
+        }
+
+        .btn-restock {
+            background: #2196f3;
+            color: #fff;
+        }
+
+        .btn-delete {
+            background: #f44336;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Reloop.</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="shirts.html">Shirts</a>
+                <a href="pants.html">Pants</a>
+                <a href="shoes.html">Shoes</a>
+                <a href="skirts.html">Skirts</a>
+            </div>
+            <div class="nav-icons">
+                <a href="sell.html" class="sell-btn">ขายของ</a>
+                <a href="cart.html" class="btn-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <a href="profile.html" class="btn-icon"><i class="fas fa-user"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1>จัดการสต็อกสินค้า</h1>
+            <a href="sell.html" class="add-product-btn"><i class="fas fa-plus"></i> เพิ่มสินค้าใหม่</a>
+        </div>
+
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>รูปภาพ</th>
+                    <th>ชื่อสินค้า</th>
+                    <th>หมวดหมู่</th>
+                    <th>ราคา</th>
+                    <th>สถานะ</th>
+                    <th>จัดการ</th>
+                </tr>
+            </thead>
+            <tbody id="adminProductList">
+                <!-- Products will be loaded here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Admin specific logic
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchProducts();
+        });
+
+        // Determine API Base URL
+        const API_BASE_URL = window.location.protocol === 'file:' ? 'http://localhost:3001' : '';
+
+        function fetchProducts() {
+            fetch(`${API_BASE_URL}/api/products`)
+                .then(res => res.json())
+                .then(products => {
+                    const tbody = document.getElementById('adminProductList');
+                    tbody.innerHTML = products.map(product => `
+                        <tr>
+                            <td><img src="${product.image}" alt="${product.name}" class="product-img-thumb"></td>
+                            <td>${product.name}</td>
+                            <td>${product.category}</td>
+                            <td>฿${Number(product.price).toLocaleString()}</td>
+                            <td>
+                                <span class="status-badge ${product.status === 'sold' ? 'status-sold' : 'status-available'}">
+                                    ${product.status === 'sold' ? 'Sold Out' : 'Available'}
+                                </span>
+                            </td>
+                            <td>
+                                ${product.status === 'sold' ?
+                            `<button onclick="updateStatus(${product.id}, 'available')" class="action-btn btn-restock">
+                                        <i class="fas fa-box-open"></i> เติมสต็อก
+                                    </button>` :
+                            `<button onclick="updateStatus(${product.id}, 'sold')" class="action-btn" style="background: #ff9800; color: white;">
+                                        <i class="fas fa-ban"></i> ปิดการขาย
+                                    </button>`
+                        }
+                                <button onclick="deleteProduct(${product.id})" class="action-btn btn-delete">
+                                    <i class="fas fa-trash"></i> ลบ
+                                </button>
+                            </td>
+                        </tr>
+                    `).join('');
+                })
+                .catch(err => console.error('Error fetching products:', err));
+        }
+
+        function updateStatus(id, status) {
+            const user = JSON.parse(localStorage.getItem('reloop_user'));
+            if (!user || !user.email) {
+                alert('กรุณาเข้าสู่ระบบก่อนทำรายการ');
+                window.location.href = 'login.html';
+                return;
+            }
+
+            let stock = 1;
+            if (status === 'available') {
+                const input = prompt('กรุณาระบุจำนวนสต็อกที่ต้องการเพิ่ม:', '1');
+                if (input === null) return; // Cancelled
+                stock = parseInt(input);
+                if (isNaN(stock) || stock < 1) {
+                    alert('กรุณาระบุจำนวนที่ถูกต้อง');
+                    return;
+                }
+            } else {
+                if (!confirm('คุณต้องการปิดการขายสินค้านี้ใช่หรือไม่?')) return;
+                stock = 0;
+            }
+
+            fetch(`${API_BASE_URL}/api/products/${id}/status`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status, stock, email: user.email })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('อัปเดตสถานะเรียบร้อยแล้ว');
+                        fetchProducts();
+                    } else {
+                        alert('เกิดข้อผิดพลาด: ' + data.message);
+                    }
+                })
+                .catch(err => console.error(err));
+        }
+
+        function deleteProduct(id) {
+            if (!confirm('คุณแน่ใจหรือไม่ที่จะลบสินค้านี้? การกระทำนี้ไม่สามารถย้อนกลับได้')) return;
+
+            fetch(`${API_BASE_URL}/api/products/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('ลบสินค้าเรียบร้อยแล้ว');
+                        fetchProducts();
+                    } else {
+                        alert('เกิดข้อผิดพลาด: ' + data.message);
+                    }
+                })
+                .catch(err => console.error(err));
+        }
+    </script>
+</body>
+
+</html>

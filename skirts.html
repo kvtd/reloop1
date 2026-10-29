@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>กระโปรงแฟชั่น - Reloop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;800&family=Poppins:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">reloop<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">หน้าแรก</a></li>
+                <li><a href="index.html#shop">สินค้า</a></li>
+                <li><a href="sell.html">ลงขาย</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="chat.html" class="btn-icon"><i class="fas fa-comment-dots"></i></a>
+                <a href="login.html" class="btn-icon"><i class="fas fa-user"></i></a>
+                <a href="cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-container" style="display: block; padding-top: 100px;">
+        <div class="container">
+            <div class="section-header">
+                <h2>หมวดหมู่: กระโปรง</h2>
+                <p style="color: #636e72;">กระโปรงแฟชั่นหลากหลายสไตล์ แมทช์ง่ายได้ทุกลุค</p>
+            </div>
+
+            <div class="product-grid">
+                <!-- Products will be loaded dynamically via JS -->
+                <div style="text-align: center; width: 100%; grid-column: 1/-1;">
+                    <p>กำลังโหลดสินค้า...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <a href="#" class="logo">reloop<span>.</span></a>
+                <p>เปลี่ยนสไตล์ให้เป็นเรื่องสนุก กับแฟชั่นที่ไม่มีวันหยุดนิ่ง</p>
+                <div class="socials">
+                    <a href="https://www.facebook.com/share/1KZ9xdmJ8B/?mibextid=wwXIfr" target="_blank"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/wrytle_?igsh=MTNmc3k2YXp0ZXR2A%3D%3D&utm_source=qr"
+                        target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>ช่วยเหลือ</h4>
+                <ul>
+                    <li><a href="profile.html#orders">สถานะคำสั่งซื้อ</a></li>
+                    <li><a href="profile.html#orders">การจัดส่ง</a></li>
+                    <li>
+                        <details>
+                            <summary style="cursor: pointer; color: #b2bec3; transition: 0.3s;">ติดต่อเรา</summary>
+                            <div style="margin-top: 5px;">
+                                <a href="mailto:Chayaphat7184@gmail.com"
+                                    style="display: block; margin-left: 10px; font-size: 0.9em; margin-bottom: 5px;">-
+                                    Chayaphat7184</a>
+                                <a href="mailto:jummum128@gmail.com"
+                                    style="display: block; margin-left: 10px; font-size: 0.9em; margin-bottom: 5px;">-
+                                    jummum128</a>
+                                <a href="mailto:kvtdnm@gmail.com"
+                                    style="display: block; margin-left: 10px; font-size: 0.9em;">- kvtdnm</a>
+                            </div>
+                        </details>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h4>รับข่าวสาร</h4>
+                <form>
+                    <input type="email" placeholder="อีเมลของคุณ">
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Reloop. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="products_data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
